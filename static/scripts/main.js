@@ -30,7 +30,7 @@ require(['jquery', 'jquery-tablesorter'], function($){
 			$(this).html(i+1);
 		});
 	};
-
+	
 	var tap, tpp;
 	$.each($('.eff'), function(i, v){
 		tap = $(v).siblings('.tap').html();

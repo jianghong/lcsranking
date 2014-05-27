@@ -11,10 +11,12 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>Name</th>
+          <th>Name [Team] (Position)</th>
           <th>Total Actual Points (TAP)</th>
           <th>Total Projected Points (TPP)</th>
           <th>+/-</th>
+          <th>Team W/L</th>
+          <th>expr(?)</th>
         </tr>
       </thead>
       <tbody>
@@ -22,10 +24,12 @@
         {% if add_points(api_data.proPlayers[obj].statsByWeek) > 0 %}
           <tr>
             <th class="index"></th>
-            <th>{{ api_data.proPlayers[obj].name }}</th>
+            <th>{{ api_data.proPlayers[obj].name }} [{{ api_data.proPlayers[obj] | get_team }}] ({{ api_data.proPlayers[obj].positions.0}})</th>
             <th class="tap">{{ add_points(api_data.proPlayers[obj].statsByWeek) }}</th>
             <th class="tpp">{{ add_points(api_data.proPlayers[obj].statsByWeek, 'projectedValue') }}</th>
             <th class="eff"></th>
+            <th class="W-L">{{ api_data.proPlayers[obj] | get_winloss }}</th>
+            <th class="expr">{{ add_points(api_data.proPlayers[obj].statsByWeek) * api_data.proPlayers[obj] | get_expr }}</th>
           </tr>
         {% endif %}
       {% endfor %}

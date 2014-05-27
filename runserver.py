@@ -6,16 +6,18 @@ import localsettings
 app = Flask(__name__)
 app.debug = localsettings.DEBUG
 
+
+WEEKS = 1
+f = open('api_payload.json')
+API_DATA = json.load(f)
+
 @app.route('/')
 def index():
-	f = open('api_payload.json')
-	json_data = json.load(f)
-	return render_template('index.html', api_data=json_data)
+	return render_template('index.html', api_data=API_DATA)
 
 @app.context_processor
 def utility_processor():
 	def add_points(obj, mode='actualValue'):
-		weeks = 1
 		total = 0
 		point_factors = {
 			'assists': 1.5,
@@ -28,12 +30,40 @@ def utility_processor():
 			'quadraKills': 5.0,
 			'tripleKills': 2.0
 		}
-		for i in xrange(weeks):
+		for i in xrange(WEEKS):
 			for k, v in obj[str(i+1)].iteritems():
 				if k != 'week':
 					total += v[mode] * point_factors[k]
 		return total
 	return dict(add_points=add_points)
+
+@app.template_filter('get_team')
+def get_team(player_obj):
+	return API_DATA['proTeams'][str(player_obj['proTeamId'])]['shortName'] 
+
+@app.template_filter('get_expr')
+def get_expr(player_obj):
+	player_team = API_DATA['proTeams'][str(player_obj['proTeamId'])]
+	total_wins = 0
+	total_losses = 0
+
+	for i in xrange(WEEKS):
+		total_wins += player_team['statsByWeek'][str(i+1)]['matchVictory']['actualValue']
+		total_losses += player_team['statsByWeek'][str(i+1)]['matchDefeat']['actualValue']
+
+	return (1.0 - float(total_wins) / (total_losses + total_wins))
+
+@app.template_filter('get_winloss')
+def get_winloss(player_obj):
+	player_team = API_DATA['proTeams'][str(player_obj['proTeamId'])]
+	total_wins = 0
+	total_losses = 0
+
+	for i in xrange(WEEKS):
+		total_wins += player_team['statsByWeek'][str(i+1)]['matchVictory']['actualValue']
+		total_losses += player_team['statsByWeek'][str(i+1)]['matchDefeat']['actualValue']
+
+	return "{0}W - {1}L".format(total_wins, total_losses)
 
 if __name__ == '__main__':
     app.run()
