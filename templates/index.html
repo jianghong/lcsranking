@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <link rel="stylesheet" href="../static/css/lib/bootstrap.min.css">
+		<script data-main="static/scripts/main" src="static/scripts/require.js"></script>
+    <title>LCS Rankings</title>
+	</head>
+	<body>
+		<h1>LCS Rankings</h1>
+    <table class="table-striped table main-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Total Actual Points (TAP)</th>
+          <th>Total Projected Points (TPP)</th>
+          <th>Potential Points (PP) </th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for obj in api_data.proPlayers %}
+        <tr>
+          <th>{{ loop.index }}</th>
+          <th>{{ api_data.proPlayers[obj].name }}</th>
+          <th class="tap">{{ add_points(api_data.proPlayers[obj].statsByWeek) }}</th>
+          <th class="tpp">{{ add_points(api_data.proPlayers[obj].statsByWeek, 'projectedValue') }}</th>
+          <th class="eff"></th>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+	</body>
+</html>
