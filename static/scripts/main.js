@@ -1,11 +1,11 @@
 require.config({
 	baseUrl: '/static/scripts',
 	paths: {
-		'underscore': 'lib/underscore-min',
-		'backbone': 'lib/backbone-min',
-		'bootstrap': 'lib/bootstrap.min',
-		'jquery': 'lib/jquery.min',
-		'jquery-tablesorter': 'lib/jquery.tablesorter.min'
+		'underscore': 'vend/underscore-min',
+		'backbone': 'vend/backbone-min',
+		'bootstrap': 'vend/bootstrap.min',
+		'jquery': 'vend/jquery.min',
+		'jquery-tablesorter': 'vend/jquery.tablesorter.min'
 	},
 	shim: {
 		'underscore': {

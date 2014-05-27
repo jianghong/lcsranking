@@ -21,12 +21,12 @@ def utility_processor():
 			'assists': 1.5,
 			'deaths': -0.5,
 			'doubleKills': 0.0,
-			'killOrAssistBonus': 2,
-			'kills': 2,
+			'killOrAssistBonus': 2.0,
+			'kills': 2.0,
 			'minionKills': .01,
 			'pentaKills': 10,
-			'quadraKills': 5,
-			'tripleKills': 2
+			'quadraKills': 5.0,
+			'tripleKills': 2.0
 		}
 		for i in xrange(weeks):
 			for k, v in obj[str(i+1)].iteritems():
