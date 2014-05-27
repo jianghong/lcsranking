@@ -8,8 +8,8 @@
 	<body>
 		<h1>LCS Rankings (Week 1)</h1>
     <hr>
+    <p><a href="#contributors">Contributors</a></p>
     <p>Click column headers to sort</p>
-    <p>Points should be correct now. <a href="http://www.reddit.com/r/FantasyLCS/comments/26kjwf/created_a_ranking_site_for_fun_today_would_like/chrxjyc">Credit</a> to /u/mhixson on reddit for spotting the issue.</p>
     <p>? - Experimental stat. The idea is to highlight the players who were on losing teams but still performed decently. Take with grain of salt.</p>
     <table id="main-table" class="tablesorter table-striped table">
       <thead>
@@ -39,6 +39,12 @@
       {% endfor %}
       </tbody>
     </table>
+    <hr>
+    <h2 id="contributors">Contributors</h2>
+    <ul>
+      <li><a href="http://www.reddit.com/r/FantasyLCS/comments/26kjwf/created_a_ranking_site_for_fun_today_would_like/chrxjyc">mhixson</a> - corrected my point calculations.</li>
+      <li><a href="http://www.reddit.com/r/FantasyLCS/comments/26kjwf/created_a_ranking_site_for_fun_today_would_like/chrxkgp">MiMiK_XG</a> - contributed to the in progress expr formula</li>
+    </ul>
     {% if not debug %}
       <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
