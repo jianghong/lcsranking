@@ -70,4 +70,4 @@ def inject_debug():
 	return dict(debug=localsettings.DEBUG)
 
 if __name__ == '__main__':
-    app.run(port=8000)
+    app.run()
