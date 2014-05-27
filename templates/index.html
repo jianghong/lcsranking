@@ -10,7 +10,7 @@
     <hr>
     <p>Click column headers to sort</p>
     <p>Points should be correct now. <a href="http://www.reddit.com/r/FantasyLCS/comments/26kjwf/created_a_ranking_site_for_fun_today_would_like/chrxjyc">Credit</a> to /u/mhixson on reddit for spotting the issue.</p>
-    <p>? - Experimental stat. The idea is to highlight the players who were on losing teams but still performed decently. It currently rewards losing teams way too heavily, so take with grain of salt.</p>
+    <p>? - Experimental stat. The idea is to highlight the players who were on losing teams but still performed decently. Take with grain of salt.</p>
     <table id="main-table" class="tablesorter table-striped table">
       <thead>
         <tr>
@@ -33,7 +33,7 @@
             <th class="tpp">{{ add_points(api_data.proPlayers[obj].statsByWeek, 'projectedValue') }}</th>
             <th class="eff"></th>
             <th class="W-L">{{ api_data.proPlayers[obj] | get_winloss }}</th>
-            <th class="expr">{{ add_points(api_data.proPlayers[obj].statsByWeek) * api_data.proPlayers[obj] | get_expr }}</th>
+            <th class="expr">{{ api_data.proPlayers[obj] | get_expr }}</th>
           </tr>
         {% endif %}
       {% endfor %}
