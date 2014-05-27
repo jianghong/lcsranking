@@ -26,8 +26,8 @@ def utility_processor():
 			'killOrAssistBonus': 2.0,
 			'kills': 2.0,
 			'minionKills': .01,
-			'pentaKills': 10,
-			'quadraKills': 5.0,
+			'pentaKills': 5.0,
+			'quadraKills': 3.0,
 			'tripleKills': 2.0
 		}
 		for i in xrange(WEEKS):
@@ -65,5 +65,9 @@ def get_winloss(player_obj):
 
 	return "{0}W - {1}L".format(total_wins, total_losses)
 
+@app.context_processor
+def inject_debug():
+	return dict(debug=localsettings.DEBUG)
+
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8000)
