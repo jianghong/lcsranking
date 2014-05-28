@@ -2,6 +2,8 @@
 <html>
 	<head>
     <link rel="stylesheet" href="../static/css/vend/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/vend/jquery-tablesorter-css/style.css">
+    <link rel="stylesheet" href="../static/css/app.css">
 		<script data-main="static/scripts/main" src="static/scripts/require.js"></script>
     <title>LCS Rankings</title>
 	</head>
@@ -12,6 +14,16 @@
     <p><a href="https://github.com/jianghong/lcsranking">Github</a></p>
     <p>Click column headers to sort</p>
     <p>? - Experimental stat. The idea is to highlight the players who were on losing teams but still performed decently. Take with grain of salt.</p>
+    <hr>
+    <div class="btn-group">
+      <button type="button" data-position="all" class="position-sort btn btn-default">All</button>
+      <button type="button" data-position="Top Lane" class="position-sort btn btn-default">Top</button>
+      <button type="button" data-position="Jungler" class="position-sort btn btn-default">Jungle</button>
+      <button type="button" data-position="Mid Lane"class="position-sort btn btn-default">Mid</button>
+      <button type="button" data-position="AD Carry"class="position-sort btn btn-default">ADC</button>
+      <button type="button" data-position="Support" class="position-sort btn btn-default">Support</button>
+    </div>
+    <h2>Rankings</h2>
     <table id="main-table" class="tablesorter table-striped table">
       <thead>
         <tr>
@@ -27,7 +39,7 @@
       <tbody>
       {% for obj in api_data.proPlayers %}
         {% if add_points(api_data.proPlayers[obj].statsByWeek) > 0 %}
-          <tr>
+          <tr class="player-row"data-sort="{{ api_data.proPlayers[obj].positions.0}}">
             <th class="index"></th>
             <th>{{ api_data.proPlayers[obj].name }} [{{ api_data.proPlayers[obj] | get_team }}] ({{ api_data.proPlayers[obj].positions.0}})</th>
             <th class="tap">{{ add_points(api_data.proPlayers[obj].statsByWeek) }}</th>
