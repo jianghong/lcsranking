@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.debug = localsettings.DEBUG
 
 
-WEEKS = 3
+WEEKS = 4
 f = open('api_payload.json')
 API_DATA = json.load(f)
 
